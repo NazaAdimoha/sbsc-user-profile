@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import profile from "../../assets/profile.jpg"
 
-const AuthRight = () => {
+const AuthRight = (props) => {
   return (
-    <div>AuthRight</div>
-  )
-}
+    <div className="right">
+      <div>
+        <img
+          src={profile}
+          alt=""
+          style={{
+            height: "100vh",
+            width: "100%",
+            // top: "-75px",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+    </div>
+  );
+};
 
-export default AuthRight
+export default AuthRight;

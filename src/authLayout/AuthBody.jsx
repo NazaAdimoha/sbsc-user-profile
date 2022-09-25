@@ -6,18 +6,18 @@ import "./AuthBody.css";
 const AuthBody = () => {
   return (
     <div>
-      <div>
+      <div style={{display: "flex", width: "100%", height: "100%"}}>
         <div
           style={{
-            flex: "1",
-            margin: "2rem 4rem",
+            flex: "5",
+            padding: "3rem",
           }}
         >
           <AuthLeft />
         </div>
         <div
           style={{
-            flex: "1",
+            flex: "7",
           }}
         >
           <AuthRight />
