@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthLeft from '../../components/loginAuth/authLeft';
+import LoginForm from '../../components/form/LoginForm';
 import AuthRight from '../../components/loginAuth/authRight';
 
 
@@ -13,7 +13,7 @@ const Login = () => {
           padding: "3rem",
         }}
       >
-        <AuthLeft />
+        <LoginForm />
       </div>
       <div
         style={{

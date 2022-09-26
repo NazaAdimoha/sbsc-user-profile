@@ -1,57 +1,75 @@
-import axios from 'axios';
+import { alertRegisterSuccess, registerFailureAlert, registerSuccessAlert } from "./utils/alert";
 
-const url = process.env.REACT_APP_BASE_URL;
+let url = process.env.REACT_APP_BASE_URL;
 
-export const register = async (
-    email,
-    password,
-    confirmPassword) => {
-
-    try{
-        const formDetails = {
-            email,
-            password,
-            confirmPassword
-        }
-        const response = await axios.post(`${url}/api/register`, formDetails);
-        // store response in local storage
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("id", response.data.id);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-    }
+export const registerUser =  (formDetails) => {
+  return fetch(`${url}/api/register`, {
+    method: "POST",
+    body: JSON.stringify(formDetails),
+    headers: {
+      "Content-type": "application/json",
+      Accept: "application/json",
+    },
+  });
 }
 
-export const login = async (email, password) => {
+// export const registerUser = async (formDetails) => {
+//   try {
+//     const response = await fetch(`${url}/api/register`, {
+//       method: "POST",
+//       body: JSON.stringify(formDetails),
+//       headers: {
+//         "Content-type": "application/json",
+//         Accept: "application/json",
+//       },
+//     });
+
+//     // store response in local storage
+//     const data = await response.json();
+//     const { token, id } = data;
+//     localStorage.setItem("token", token);
+//     localStorage.setItem("id", id);
+//     registerSuccessAlert();
+//     console.log("response", response);
+//     // return response.json();
+//   } catch (error) {
+//     registerFailureAlert();
+//   }
+// };
+
+export const loginUser = async (formDetails) => {
+  try {
+    let response = await fetch(`${url}/api/login`, {
+      method: "POST",
+      body: JSON.stringify(formDetails),
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+        // Authorization: `Bearer ${token}`
+      },
+    });
     
-    try {
-        const response = await axios.post(`${url}/api/login`, {
-            headers: {
-                "Content-type": "application/json",
-                // Authorization: `Bearer ${token}`
-              },
-              body: JSON.stringify({
-                email,
-                password
-              }),
-        });
-        return response.json();
-    } catch (error) {
-        return error.json();
-    }
-}
+    const data = await response.json();
+    const { token } = data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user-info", JSON.stringify(response));
+  } catch (error) {
+    return error.json();
+  }
+};
 
 export const logout = async () => {
-    try {
-        const response = await axios.post(`${url}/api/logout`, {
-           headers: {
-                "Content-type": "application/json",
-                Authorization: ``
-           } 
-        });
-        return await response.json();
-    } catch (error) {
-        return ""
-    }
+  try {
+    const response = await fetch(`${url}/logout`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: ``,
+      },
+    });
+    localStorage.removeItem("token");
+    return await response.json();
+  } catch (error) {
+    return "";
+  }
 };

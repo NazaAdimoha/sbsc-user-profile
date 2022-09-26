@@ -1,6 +1,6 @@
 import React from 'react';
-import AuthLeft from '../../components/authLeft/AuthLeft';
 import AuthRight from '../../components/authRight/AuthRight';
+import RegisterForm from '../../components/form/RegisterForm';
 
 const Register = () => {
   return (
@@ -12,7 +12,7 @@ const Register = () => {
           padding: "3rem",
         }}
       >
-        <AuthLeft />
+        <RegisterForm />
       </div>
       <div
         style={{
