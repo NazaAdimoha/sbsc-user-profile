@@ -6,32 +6,30 @@ export const register = async (
     email,
     password,
     confirmPassword) => {
-    try{
-        const response = await axios.post(`${url}/api/register`, {
-            headers: {
-                "Content-type": "application/json",
-                // authorization: token
-              },
-              body: JSON.stringify({
-                email,
-                password,
-                confirmPassword
-              }),
 
-        });
-        return response.json();
+    try{
+        const formDetails = {
+            email,
+            password,
+            confirmPassword
+        }
+        const response = await axios.post(`${url}/api/register`, formDetails);
+        // store response in local storage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("id", response.data.id);
+        return response.data;
     } catch (error) {
         console.log(error);
     }
 }
 
 export const login = async (email, password) => {
-    let token = localStorage.getItem("token");
+    
     try {
         const response = await axios.post(`${url}/api/login`, {
             headers: {
                 "Content-type": "application/json",
-                Authorization: `Bearer ${token}`
+                // Authorization: `Bearer ${token}`
               },
               body: JSON.stringify({
                 email,
@@ -40,7 +38,7 @@ export const login = async (email, password) => {
         });
         return response.json();
     } catch (error) {
-        console.log(error);
+        return error.json();
     }
 }
 

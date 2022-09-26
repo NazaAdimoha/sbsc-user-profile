@@ -43,7 +43,7 @@ const AuthLeft = () => {
           placeholder="Enter your password"
         />
       </AuthForm>
-      <AuthButton text="Register" />
+      <AuthButton text="Login" />
     </div>
   )
 }
