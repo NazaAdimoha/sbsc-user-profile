@@ -11,6 +11,7 @@ const AuthLeft = () => {
         password: '',
         confirmPassword: '',
     });
+    const { email, password, confirmPassword } = formData;
 
     const handleChange = (e) => {
         setFormData({
