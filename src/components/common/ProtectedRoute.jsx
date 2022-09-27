@@ -1,7 +1,7 @@
 import { React } from "react";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getToken } from "../../utils/token";
+import { getToken } from "../../utils/localStorage";
 
 
 function PrivateRoute({ children }) {
@@ -15,7 +15,6 @@ const token = getToken();
 }
 
 PrivateRoute.propTypes = {
-  //   component: PropTypes.func.isRequired,
   children: PropTypes.object,
 };
 

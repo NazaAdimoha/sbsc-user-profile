@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/common/Navbar";
 
 const Content = () => {
   return (
-    <div>Content</div>
-  )
-}
+    <>
+      <Navbar />
+      <div className="text-2xl">Content</div>
+    </>
+  );
+};
 
-export default Content
+export default Content;

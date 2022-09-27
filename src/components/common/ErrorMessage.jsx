@@ -4,7 +4,7 @@ const ErrorMessage = ({ message }) => {
 
   if (!message) return <></>
   
-  return <p className="">{message}</p>;
+  return <p className="text-red-600 text-sm">{message}</p>;
 };
 
 export default ErrorMessage;

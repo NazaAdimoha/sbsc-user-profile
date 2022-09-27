@@ -1,63 +1,64 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { registerUser } from "../api";
-import { registerSuccessAlert } from "../utils/alert";
+import { registerUser, loginUser } from "../api";
+import { registerSuccessAlert, loginSuccessAlert } from "../utils/alert";
+import { clearLocalStorage, setId, setToken } from "../utils/localStorage";
 
 export const AuthContext = React.createContext(null);
 
 const initialState = {
     token: null,
-  isLoggedIn: false,
-  isLoginPending: false,
-  loginError: null,
+    id: null,
 };
 export const ContextProvider = (props) => {
   const [state, setState] = useState(initialState);
   const navigate = useNavigate();
 
-  // const setLoginPending = (isLoginPending) => setState({ isLoginPending });
-  // const setLoginSuccess = (isLoggedIn) => setState({ isLoggedIn });
-  // const setLoginError = (loginError) => setState({ loginError });
-  const login = ( formData ) => {
-    // setLoginPending(true);
-    // setLoginSuccess(false);
-    // setLoginError(null);
+  const authLogin = (formData) => {
+    loginUser(formData)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const { token } = data;
+        setToken(token);
+        setState((prev) => ({ ...prev, token }));
 
+        loginSuccessAlert();
+        navigate("/content");
+      });
   };
-  const register = ( formData ) => {
-    // setLoginPending(true);
-    // setLoginSuccess(false);
-    // setLoginError(null);
+
+  const authRegister = (formData) => {
     registerUser(formData)
-    .then((response) => {
-      // console.log("response", response);
-      return response.json();
-    })
-    .then((data) => {
-      // console.log("data", data);
-      const { token, id } = data;
-      // localStorage.setItem("token", token);
-      // localStorage.setItem("id", id);
-      registerSuccessAlert();
-      setState((prev) => ({...prev, token}))
-      navigate("/content");
-    })
-    
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const { token, id } = data;
+        setToken(token);
+        setId(id);
+        setState((prev) => ({ ...prev, token, id }));
+
+        registerSuccessAlert();
+        navigate("/content");
+      });
   };
   
-  const logout = () => {
-    // setLoginPending(false);
-    // setLoginSuccess(false);
-    // setLoginError(null);
+  const authLogout = () => {
+    clearLocalStorage()
+    navigate("/");
+    return
   };
+
   return (
     <AuthContext.Provider
       value={{
         state,
-        login,
-        logout,
-        register,
+        authLogin,
+        authLogout,
+        authRegister,
       }}
     >
       {props.children}

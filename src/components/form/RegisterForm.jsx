@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { registerUser } from "../../api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authSchema } from "../../pages/auth/authSchema";
-import { getToken } from "../../utils/token";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/Auth.context";
 
@@ -11,7 +9,7 @@ import { AuthContext } from "../../context/Auth.context";
 const RegisterForm = () => {
   const navigate = useNavigate();
   const { state, register: authRegister } = useContext(AuthContext)
-  const token = getToken();
+
   
   const {
     register,
@@ -26,10 +24,11 @@ const RegisterForm = () => {
   }
   ;
   useEffect(() => {
-    if (token) {
+    if (state.token) {
       navigate("/content");
     }
-  }, [token, navigate])
+  }, [state.token, navigate])
+  
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>

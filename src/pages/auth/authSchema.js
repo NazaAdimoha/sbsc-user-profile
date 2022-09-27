@@ -7,8 +7,8 @@ export const authSchema = yup
       .string()
       .required("Password is required")
       .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        "Must Contain 8 Characters letters or numbers"
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,
+        "Must Contain at least 8 Characters, 1 letter or 1 number and 1 special character"
       ),
   })
   .required();
