@@ -1,0 +1,26 @@
+.sidebar--list .row {
+
+    height: 3rem;
+    color: #21334f;
+  
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    border-radius: 0.3rem;
+    padding: 0.4rem 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    
+  }
+  
+  .sidebar--list #active {
+    background: #6e40dc;
+    border-radius: 5px;
+    padding: 0.3rem 1rem;
+  }
+  
+  .sidebar--list .row:hover {
+    background-color: #240866;
+    color: #fff;
+    cursor: pointer;
+  }

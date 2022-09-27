@@ -64,7 +64,6 @@ const Login = () => {
           </form>
         </div>
         <img src={Profile} alt="login" className="object-cover hover:object-scale-down h-1/3 lg:w-1/3 md:w-1/2 bg-gray-300" />
-        {/* <div className="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative"></div> */}
       </div>
     </section>
   </>

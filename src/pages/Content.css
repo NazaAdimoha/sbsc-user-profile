@@ -1,0 +1,10 @@
+.dash {
+    box-sizing: border-box;
+    padding-top: 0;
+    margin: 0;
+    height: 100vh;
+  }
+
+  .layout-flex {
+    width: 260px;
+  }

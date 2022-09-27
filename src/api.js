@@ -13,7 +13,7 @@ export const registerUser =  (formDetails) => {
 
 export const loginUser = async (formDetails) => {
   
-    fetch(`${url}/api/login`, {
+    return fetch(`${url}/api/login`, {
       method: "POST",
       body: JSON.stringify(formDetails),
       headers: {

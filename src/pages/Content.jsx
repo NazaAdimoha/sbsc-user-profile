@@ -1,11 +1,19 @@
 import React from "react";
 import Navbar from "../components/common/Navbar";
+import SideBar from "../components/sidebar/SideBar";
 
-const Content = () => {
+const Content = ({children}) => {
   return (
     <>
-      <Navbar />
-      <div className="text-2xl">Content</div>
+      <div className="dash">
+        <Navbar />
+        <div className="layout-flex h-full">
+          {/* <div className="sidebar-position h-full"> */}
+            <SideBar />
+          {/* </div> */}
+          <div className="children-position">{children}</div>
+        </div>
+      </div>
     </>
   );
 };
