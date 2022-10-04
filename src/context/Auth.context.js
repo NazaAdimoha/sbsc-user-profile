@@ -42,7 +42,7 @@ export const ContextProvider = (props) => {
         setState((prev) => ({ ...prev, token, id }));
 
         registerSuccessAlert();
-        navigate("/content");
+        navigate("/register");
       });
   };
   
